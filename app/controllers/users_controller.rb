@@ -16,4 +16,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @username = params['path_username']
+    @user = User.where({ :username => @username})[0]
+  
+  end
+
 end
