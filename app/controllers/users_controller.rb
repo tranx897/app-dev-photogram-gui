@@ -17,8 +17,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @username = params['path_username']
-    @user = User.where({ :username => @username})[0]
+    username = params['path_username']
+    @user = User.where({ :username => username})[0]
+
+    @user.username = params['username']
+    @user.save
+
+    redirect_to("/users/#{username}")
   
   end
 
