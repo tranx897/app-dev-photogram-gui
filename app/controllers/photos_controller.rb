@@ -22,4 +22,12 @@ class PhotosController < ApplicationController
 
     redirect_to("/photos/#{photo.id}")
   end
+
+  def delete
+    photo_id = params['path_photo_id']
+    photo = Photo.where({ :id => photo_id}).first
+    photo.destroy
+
+    redirect_to("/photos")
+  end
 end
