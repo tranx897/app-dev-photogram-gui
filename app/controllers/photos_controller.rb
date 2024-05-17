@@ -30,4 +30,17 @@ class PhotosController < ApplicationController
 
     redirect_to("/photos")
   end
+
+  def update
+    # query string: image_url=https%3A%2F%2Frobohash.org%2Fdolorehicincidunt.png%3Fsize%3D300x300%26set%3Dset1&
+    # image_caption=Once+you%E2%80%99ve+accepted+your+flaws%2C+no+one+can+use+them+against+you.
+    photo_id = params['path_photo_id']
+    photo = Photo.where({ :id => photo_id}).first
+
+    photo.image = params['image_url']
+    photo.caption = params['image_caption']
+    photo.save
+
+    redirect_to("/photos/#{photo_id}")
+  end
 end
