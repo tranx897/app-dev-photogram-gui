@@ -8,7 +8,12 @@ class UsersController < ApplicationController
   def show
     @username = params['path_username']
     @user = User.where({ :username => @username})[0]
-    render({ :template => "user_templates/show" })
+
+    if @user == nil
+      redirect_to("/404")
+    else
+      render({ :template => "user_templates/show" })
+    end
   end
 
 end
