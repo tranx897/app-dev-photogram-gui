@@ -5,6 +5,8 @@ class PhotosController < ApplicationController
   end
 
   def show
-    
+    photo_id = params['path_photo_id']
+    @photo = Photo.where({ :id => photo_id}).first
+    render({ :template => "photo_templates/show"})
   end
 end
