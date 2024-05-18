@@ -17,13 +17,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    username = params['path_username']
-    @user = User.where({ :username => username})[0]
+    user_id = params['path_id']
+    user = User.where({ :id => user_id}).first
 
-    @user.username = params['username']
-    @user.save
+    user.username = params['username']
+    user.save
 
-    redirect_to("/users/#{username}")
+    redirect_to("/users/#{user.username}")
   
   end
 
