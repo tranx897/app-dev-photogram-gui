@@ -24,7 +24,14 @@ class UsersController < ApplicationController
     user.save
 
     redirect_to("/users/#{user.username}")
-  
+  end
+
+  def add
+    user = User.new
+    user.username = params['username']
+    user.save
+
+    redirect_to("/users/#{user.username}")
   end
 
 end
